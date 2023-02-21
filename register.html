@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+      border: 3px solid #f1f1f1;
+    }
+    
+    /* Full-width inputs */
+    input[type=text], input[type=password], input[type=email], input[type = number] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    
+    /* Set a style for all buttons */
+    button {
+      background-color: #04AA6D;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    /* Add a hover effect for buttons */
+    button:hover {
+      opacity: 0.8;
+    }
+    
+    /* Extra style for the cancel button (red) */
+    
+    </style>
+</head>
+<body>
+    <h1>Resgistration form</h1>
+    <form name="register" style="width:80%;" onsubmit="return validateForm()">
+  
+        <div class="container" style="padding:20px;">
+          <label for="uname"><b>Name</b></label>
+          <input type="text" placeholder="Enter Name" name="name" required style="margin:20px; width:70%"; onkeypress="return event.charCode != 32"><br>
+      
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" id="psw" name="psw" required style="margin:20px; width:70%";><br>
+          <input type="checkbox" onclick="passVisible()">Show Password<br>
+
+          <label for="email"><b>Email Id</b></label>
+          <input type="email" placeholder="Enter Your email" name="email" required style="margin:20px; width:70%";><br>
+
+          <label for="phone"><b>Phone Number</b></label>
+          <input type="number" placeholder="Enter Password" name="phone" required style="margin:20px; width:70%";><br>
+
+          <label for="gender"><b>Gender</b></label>
+          <input type="radio" name="gender" value="female" required>Female
+          <input type="radio" name="gender" value="female" required >Male<br>
+      
+          <label for="birthday"><b>Birthday:</b></label>
+        <input type="date" id="birthday" name="birthday" required style="margin:20px; width:150px";>
+          <button type="submit" style="margin-left:69px;width:70%";>Register</button><br><br><br>
+          <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+          </label>
+        </div>
+    </form>
+    <script>
+        function validateForm() {
+            let x = document.forms["register"]["name"].value;
+            if (x == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+            else if(x.length < 6) {
+                alert("Name must of atleast 6 characters");
+                return false;
+            }
+            let y = document.forms["register"]["psw"].value;
+            const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])/;
+            if(y.length < 8) {
+                alert("Password must be atleast of 8 characters");
+                return false;
+            }
+            else if(regex.test(y) === false) {
+                alert("Password must contain numbers, alphabets of uppercase and lowercase, and special symbols");
+                return false;
+            }
+            y = document.forms["register"]["phone"].value;
+            console.log(y);
+            const regex1 = /^[6-9]\d{9}$/gi;
+            if(y.length < 10) {
+                alert("10 charaters required");
+                return false;
+            }
+            if(regex1.test(y) === false) {
+                alert("Enter Valid phone number");
+                return false;
+            }
+            return true;
+        }
+
+        function passVisible() {
+            var x = document.getElementById("psw");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+    </script>
+</body>
+</html>
